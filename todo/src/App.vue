@@ -14,15 +14,8 @@
       class="border border-solid border-purple-300 w-9/12 my-4 p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
       @keyup.enter="addTodo"
     />
-
-    <Todo
-      v-for="todo in todos"
-      :key="todo.id"
-      :todo="todo"
-      @toggle-checkbox="toggleCheckbox"
-      @delete-todo="deleteTodo"
-    />
-    <CompletedTodo v-show="todos.length > 0 ? true : false" :todos="todos" />
+    <Todo v-for="todo in todos" :key="todo.id" :todo="todo" />
+    <CompletedTodo v-show="todos.length > 0 ? true : false" />
   </div>
 </template>
 
@@ -38,35 +31,43 @@ export default {
   data() {
     return {
       todoText: "",
-      todos: [],
+      // todos: [],
     };
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    },
   },
   methods: {
     addTodo(e) {
       if (e.target.value.trim() === "") return;
-      const todo = {
-        id: Date.now(),
-        text: e.target.value,
-        checked: false,
-      };
-      this.todos.push(todo);
+      // const todo = {
+      //   id: Date.now(),
+      //   text: e.target.value,
+      //   checked: false,
+      // };
+      // this.todos.push(todo);
+
+      this.$store.commit("ADD_TODO", e.target.value);
       this.todoText = "";
     },
-    toggleCheckbox({ id, checked }) {
-      const idx = this.todos.findIndex((todo) => {
-        return todo.id === id;
-      });
-      this.todos[idx].checked = checked;
-    },
-    deleteTodo({ id }) {
-      // const idx = this.todos.findIndex((todo) => {
-      //   return todo.id === id;
-      // });
-      // this.todos.splice(idx, 1);
-      this.todos = this.todos.filter((todo) => {
-        return todo.id !== id;
-      });
-    },
+    // toggleCheckbox({ id, checked }) {
+    // const idx = this.todos.findIndex((todo) => {
+    //   return todo.id === id;
+    // });
+    // this.todos[idx].checked = checked;
+    // },
+    // deleteTodo({ id }) {
+    // const idx = this.todos.findIndex((todo) => {
+    //   return todo.id === id;
+    // });
+    // this.todos.splice(idx, 1);
+    // 또는 아래처럼 구현..
+    // this.todos = this.todos.filter((todo) => {
+    //   return todo.id !== id;
+    // });
+    // },
   },
 };
 </script>

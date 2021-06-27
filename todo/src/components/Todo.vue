@@ -32,15 +32,20 @@ export default {
   },
   methods: {
     toggleCheckbox(e) {
-      this.$emit("toggle-checkbox", {
+      // this.$emit("toggle-checkbox", {
+      //   id: this.todo.id,
+      //   checked: e.target.checked,
+      // });
+      this.$store.commit("TOGGLE_CHECKBOX", {
         id: this.todo.id,
         checked: e.target.checked,
       });
     },
     onClickDelete() {
-      this.$emit("delete-todo", {
-        id: this.todo.id,
-      });
+      // this.$emit("delete-todo", {
+      //   id: this.todo.id,
+      // });
+      this.$store.commit("DELETE_TODO", this.todo.id);
     },
   },
 };

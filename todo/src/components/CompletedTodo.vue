@@ -6,13 +6,16 @@
 
 <script>
 export default {
-  props: {
-    todos: {
-      type: Array,
-      required: true,
-    },
-  },
+  // props: {
+  //   todos: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
   computed: {
+    todos() {
+      return this.$store.state.todos;
+    },
     numOfCompletedTodo() {
       return this.todos.filter((todo) => todo.checked).length;
     },
