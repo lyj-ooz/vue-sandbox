@@ -22,15 +22,18 @@
       @toggle-checkbox="toggleCheckbox"
       @delete-todo="deleteTodo"
     />
+    <CompletedTodo v-show="todos.length > 0 ? true : false" :todos="todos" />
   </div>
 </template>
 
 <script>
 import Todo from "@/components/Todo.vue";
+import CompletedTodo from "@/components/CompletedTodo.vue";
 export default {
   name: "App",
   components: {
     Todo,
+    CompletedTodo,
   },
   data() {
     return {
