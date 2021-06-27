@@ -2,6 +2,9 @@
 
 vue 연습용으로 만든 심플한 todo. 투두 데이터를 저장하진 않는다. 이후에 vuex나 타입스크립트 버전도 추가할 계획이다.
 
+- 배포:
+- 스타일링: tailwindCSS
+
 ### Project setup
 
 ```
