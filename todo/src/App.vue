@@ -1,0 +1,69 @@
+<template>
+  <div
+    id="app"
+    class="container mx-auto my-16 box-border max-w-screen-md px-8 text-center"
+  >
+    <h1
+      class="text-7xl lg:text-9xl font-medium text-purple-600 text-opacity-60"
+    >
+      Todos
+    </h1>
+    <input
+      v-model="todoText"
+      type="text"
+      class="border border-solid border-purple-300 w-9/12 my-4 p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+      @keyup.enter="addTodo"
+    />
+
+    <Todo
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @toggle-checkbox="toggleCheckbox"
+      @delete-todo="deleteTodo"
+    />
+  </div>
+</template>
+
+<script>
+import Todo from "@/components/Todo.vue";
+export default {
+  name: "App",
+  components: {
+    Todo,
+  },
+  data() {
+    return {
+      todoText: "",
+      todos: [],
+    };
+  },
+  methods: {
+    addTodo(e) {
+      if (e.target.value.trim() === "") return;
+      const todo = {
+        id: Date.now(),
+        text: e.target.value,
+        checked: false,
+      };
+      this.todos.push(todo);
+      this.todoText = "";
+    },
+    toggleCheckbox({ id, checked }) {
+      const idx = this.todos.findIndex((todo) => {
+        return todo.id === id;
+      });
+      this.todos[idx].checked = checked;
+    },
+    deleteTodo({ id }) {
+      // const idx = this.todos.findIndex((todo) => {
+      //   return todo.id === id;
+      // });
+      // this.todos.splice(idx, 1);
+      this.todos = this.todos.filter((todo) => {
+        return todo.id !== id;
+      });
+    },
+  },
+};
+</script>
