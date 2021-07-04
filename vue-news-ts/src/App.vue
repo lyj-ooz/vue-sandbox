@@ -28,5 +28,7 @@ export default class App extends Vue {
 body {
   margin: 0;
   padding: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: #2c3e50;
 }
 </style>
