@@ -14,7 +14,7 @@ import { fetchAskList } from "../api/index";
 export default class AskView extends Vue {
   public asks = [];
 
-  created() {
+  created(): void {
     fetchAskList()
       .then((res) => (this.asks = res.data))
       .catch((err) => console.log(err));
