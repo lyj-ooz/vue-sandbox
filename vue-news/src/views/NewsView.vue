@@ -1,29 +1,39 @@
 <template>
   <div>
     <h1>news view</h1>
-    <div v-for="n in news" :key="n.id">
-      <div>{{ n.title }}</div>
-      <div>{{ n.url }}</div>
-    </div>
+    <ul class="news-list">
+      <!-- <list-item :data="news"></list-item> -->
+      <list-item></list-item>
+    </ul>
   </div>
 </template>
 
 <script>
-import { fetchNewsList } from "../api/index";
+// import { fetchNewsList } from "../api/index";
+import ListItem from "../components/ListItem.vue";
 export default {
-  data() {
-    return {
-      news: [],
-    };
+  // data() {
+  //   return {
+  //     news: [],
+  //   };
+  // },
+  computed: {
+    news() {
+      return this.$store.state.news;
+    },
+  },
+  components: {
+    ListItem,
   },
   created() {
-    fetchNewsList()
-      .then((res) => {
-        this.news = res.data;
-      })
-      .catch((error) => console.log(error));
+    this.$store.dispatch("FETCH_NEWS");
+    // fetchNewsList()
+    //   .then((res) => {
+    //     this.news = res.data;
+    //   })
+    //   .catch((error) => console.log(error));
   },
 };
 </script>
 
-<style></style>
+<style scoped></style>

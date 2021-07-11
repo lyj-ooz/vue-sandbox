@@ -19,24 +19,28 @@ export const router = new VueRouter({
     {
       // url 주소
       path: "/news",
+      name: "news",
       // 위 path에 보여줄 컴포넌트(=페이지)
       component: NewsView,
     },
     {
       path: "/ask",
+      name: "ask",
       component: AskView,
     },
     {
       path: "/jobs",
+      name: "jobs",
       component: JobsView,
-    },
-    {
-      path: "/user",
-      component: UserView,
     },
     {
       path: "/item",
       component: ItemView,
+      // props: (route) => ({ query: route.query.id }),
+    },
+    {
+      path: "/user/:id",
+      component: UserView,
     },
   ],
 });

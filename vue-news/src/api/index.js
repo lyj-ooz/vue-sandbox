@@ -15,5 +15,12 @@ function fetchJobsList() {
 function fetchAskList() {
   return axios.get(config.baseUrl + "ask/1.json");
 }
+function fetchUserInfo(username) {
+  return axios.get(`${config.baseUrl}user/${username}.json`);
+}
+function fetchItem(itemID) {
+  return axios.get(`${config.baseUrl}item/${itemID}.json`);
+}
+
 // 3. 내보내기
-export { fetchNewsList, fetchJobsList, fetchAskList };
+export { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem };
